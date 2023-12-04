@@ -12,33 +12,18 @@
   </head>
   <body>
     <h1>CountryPedia</h1>
-    <form>
-      <input type="text" placeholder="Search for a country" />
-      <button type="submit">Search</button>
+    <!--SEARCH FUNCTION, WORK IN PROGRESS
+      <form>
+      <input type="text" id="search-input" placeholder="Search for a country" />
+      <button class="search-btn" type="submit"></button>
     </form>
+    -->
     <div class="button-group">
       <button id="all-countries">All Countries</button>
       <button id="random">Random Country</button>
-      <div class="dropdown">
-        <button id="games">Games</button>
-        <div class="dropdown-content">
-          <a href="#">Flags</a>
-          <a href="#">Capitals</a>
-          <a href="#">Memory</a>
-        </div>
-      </div>
+      <button id="games">Games</button>
     </div>
-    <div id="countries-wrapper">
-      <div class="country-name">
-        <p id="country-text"></p>
-        <p id="flag"></p>
-      </div>
-      <div class="country-info">
-        <p id="continent"></p>
-        <p id="population"></p>
-        <p id="capital"></p>
-      </div>
-    </div>
+    <div id="countries-wrapper"></div>
 
     <script src="script.js"></script>
   </body>
