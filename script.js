@@ -9,7 +9,51 @@ const fetchCountries = async () => {
   const response = await fetch(baseUrl);
   const countries = await response.json();
 
-  //Showing all countries
+  //Function to display information about country/countries
+  function displayData() {
+    const countryDiv = document.createElement("div");
+    countryDiv.classList.add("country-div");
+    const countryTitle = document.createElement("div");
+    countryTitle.classList.add("country-title");
+    const countryInfo = document.createElement("div");
+    countryInfo.classList.add("country-info");
+    const countryInfoText = document.createElement("div");
+    countryInfoText.classList.add("country-info-text");
+    const countryName = document.createElement("h2");
+    const moreButton = document.createElement("button");
+    moreButton.classList.add("show-more");
+    const countryContinent = document.createElement("p");
+    countryContinent.classList.add("continent");
+    const countryPopulation = document.createElement("p");
+    countryPopulation.classList.add("population");
+    const countryCapital = document.createElement("p");
+    countryCapital.classList.add("capital");
+    const countryFlag = new Image(150);
+
+    countryInfoText.appendChild(countryContinent);
+    countryInfoText.appendChild(countryPopulation);
+    countryInfoText.appendChild(countryCapital);
+    countryInfo.appendChild(countryInfoText);
+    countryInfo.appendChild(countryFlag);
+    countryTitle.appendChild(countryName);
+    countryTitle.appendChild(moreButton);
+    countryDiv.appendChild(countryTitle);
+    countryDiv.appendChild(countryInfo);
+    countriesWrapper.appendChild(countryDiv);
+
+    return {
+      countryName,
+      countryTitle,
+      moreButton,
+      countryInfo,
+      countryContinent,
+      countryPopulation,
+      countryCapital,
+      countryFlag,
+    };
+  }
+
+  // GET ALL COUNTRIES
 
   allCountriesButton.addEventListener("click", function () {
     //Sorting alphabetically by common name
@@ -17,24 +61,19 @@ const fetchCountries = async () => {
 
     countriesWrapper.innerHTML = "";
 
-    // Creating div-element for every country
+    // Creating a div-element for every country
 
     countries.forEach((country) => {
-      const countryDiv = document.createElement("div");
-      countryDiv.classList.add("country-div");
-      const countryButton = document.createElement("div");
-      countryButton.classList.add("country-button");
-      const countryInfo = document.createElement("div");
-      countryInfo.classList.add("country-info");
-      const countryInfoText = document.createElement("div");
-      countryInfoText.classList.add("country-info-text");
-      const countryName = document.createElement("h2");
-      const moreButton = document.createElement("button");
-      moreButton.classList.add("show-more");
-      const countryContinent = document.createElement("p");
-      const countryPopulation = document.createElement("p");
-      const countryCapital = document.createElement("p");
-      const countryFlag = new Image(150);
+      const {
+        countryName,
+        countryTitle,
+        moreButton,
+        countryInfo,
+        countryContinent,
+        countryPopulation,
+        countryCapital,
+        countryFlag,
+      } = displayData(country);
 
       //Putting information from countries into divs
 
@@ -44,24 +83,9 @@ const fetchCountries = async () => {
       countryCapital.textContent = `Capital: ${country.capital}`;
       countryFlag.src = country.flags.png;
 
-      countryInfoText.appendChild(countryContinent);
-      countryInfoText.appendChild(countryPopulation);
-      countryInfoText.appendChild(countryCapital);
-
-      countryInfo.appendChild(countryInfoText);
-      countryInfo.appendChild(countryFlag);
-
-      countryButton.appendChild(countryName);
-      countryButton.appendChild(moreButton);
-
-      countryDiv.appendChild(countryButton);
-      countryDiv.appendChild(countryInfo);
-
-      countriesWrapper.appendChild(countryDiv);
-
       //Show more info when clicking the down-arrow
       countryInfo.style.display = "none";
-      countryButton.addEventListener("click", function (e) {
+      countryTitle.addEventListener("click", function (e) {
         moreButton.classList.toggle("close");
         if (countryInfo.style.display === "none") {
           countryInfo.style.display = "flex";
@@ -72,7 +96,8 @@ const fetchCountries = async () => {
     });
   });
 
-  //Showing random country
+  // GET RANDOM COUNTRY
+
   randomButton.addEventListener("click", function () {
     countriesWrapper.innerHTML = "";
 
@@ -80,23 +105,18 @@ const fetchCountries = async () => {
 
     const randomIndex = Math.floor(Math.random() * countries.length);
 
-    // Creating div-elements for random country
+    // Creating elements for random country
 
-    const countryDiv = document.createElement("div");
-    countryDiv.classList.add("country-div");
-    const countryButton = document.createElement("div");
-    countryButton.classList.add("country-button");
-    const countryInfo = document.createElement("div");
-    countryInfo.classList.add("country-info");
-    const countryInfoText = document.createElement("div");
-    countryInfoText.classList.add("country-info-text");
-    const countryName = document.createElement("h2");
-    const countryContinent = document.createElement("p");
-    const countryPopulation = document.createElement("p");
-    const countryCapital = document.createElement("p");
-    const countryFlag = new Image(150);
+    const {
+      countryName,
+      moreButton,
+      countryContinent,
+      countryPopulation,
+      countryCapital,
+      countryFlag,
+    } = displayData(countries);
 
-    //Putting information from random country into divs
+    //Putting information from random country into div
 
     countryName.textContent = countries[randomIndex].name.common;
     countryContinent.textContent = `Continent: ${countries[randomIndex].continents}`;
@@ -104,24 +124,13 @@ const fetchCountries = async () => {
     countryCapital.textContent = `Capital: ${countries[randomIndex].capital}`;
     countryFlag.src = countries[randomIndex].flags.png;
 
-    countryInfoText.appendChild(countryContinent);
-    countryInfoText.appendChild(countryPopulation);
-    countryInfoText.appendChild(countryCapital);
-
-    countryInfo.appendChild(countryInfoText);
-    countryInfo.appendChild(countryFlag);
-
-    countryButton.appendChild(countryName);
-
-    countryDiv.appendChild(countryButton);
-    countryDiv.appendChild(countryInfo);
-
-    countriesWrapper.appendChild(countryDiv);
+    //Hide open/close button
+    moreButton.style.display = "none";
   });
 };
 fetchCountries();
 
-//Games button message
+//GAMES BUTTON MESSAGE
 
 gamesButton.addEventListener("click", function () {
   countriesWrapper.innerHTML = "";

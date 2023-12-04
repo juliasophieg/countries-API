@@ -131,13 +131,13 @@ button {
   box-shadow: inset 0px 0px 0px 2px var(--text-color);
 }
 
-.country-button {
+.country-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.country-button h2 {
+.country-title h2 {
   font-size: 32px;
   color: var(--text-color);
   cursor: pointer;
@@ -234,7 +234,7 @@ p {
     width: 90%;
   }
 
-  .country-button {
+  .country-title {
     width: 100%;
   }
 
