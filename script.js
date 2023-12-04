@@ -13,8 +13,8 @@ const fetchCountries = async () => {
   function displayData() {
     const countryDiv = document.createElement("div");
     countryDiv.classList.add("country-div");
-    const countryTitle = document.createElement("div");
-    countryTitle.classList.add("country-title");
+    const countryBanner = document.createElement("div");
+    countryBanner.classList.add("country-banner");
     const countryInfo = document.createElement("div");
     countryInfo.classList.add("country-info");
     const countryInfoText = document.createElement("div");
@@ -35,15 +35,15 @@ const fetchCountries = async () => {
     countryInfoText.appendChild(countryCapital);
     countryInfo.appendChild(countryInfoText);
     countryInfo.appendChild(countryFlag);
-    countryTitle.appendChild(countryName);
-    countryTitle.appendChild(moreButton);
-    countryDiv.appendChild(countryTitle);
+    countryBanner.appendChild(countryName);
+    countryBanner.appendChild(moreButton);
+    countryDiv.appendChild(countryBanner);
     countryDiv.appendChild(countryInfo);
     countriesWrapper.appendChild(countryDiv);
 
     return {
       countryName,
-      countryTitle,
+      countryBanner,
       moreButton,
       countryInfo,
       countryContinent,
@@ -66,7 +66,7 @@ const fetchCountries = async () => {
     countries.forEach((country) => {
       const {
         countryName,
-        countryTitle,
+        countryBanner,
         moreButton,
         countryInfo,
         countryContinent,
@@ -85,7 +85,7 @@ const fetchCountries = async () => {
 
       //Show more info when clicking the down-arrow
       countryInfo.style.display = "none";
-      countryTitle.addEventListener("click", function (e) {
+      countryBanner.addEventListener("click", function (e) {
         moreButton.classList.toggle("close");
         if (countryInfo.style.display === "none") {
           countryInfo.style.display = "flex";
