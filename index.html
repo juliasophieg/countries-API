@@ -11,20 +11,52 @@
     />
   </head>
   <body>
-    <h1>CountryPedia</h1>
-    <!--SEARCH FUNCTION, WORK IN PROGRESS
+    <header>
+      <svg
+        class="home"
+        width="28"
+        height="25"
+        viewBox="0 0 28 25"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M11.1667 22.9167V15.8333H16.8334V22.9167C16.8334 23.6958 17.4709 24.3333 18.25 24.3333H22.5C23.2792 24.3333 23.9167 23.6958 23.9167 22.9167V13H26.325C26.9767 13 27.2884 12.1925 26.7925 11.7675L14.9492 1.1C14.4109 0.618338 13.5892 0.618338 13.0509 1.1L1.20752 11.7675C0.72585 12.1925 1.02335 13 1.67502 13H4.08335V22.9167C4.08335 23.6958 4.72085 24.3333 5.50002 24.3333H9.75002C10.5292 24.3333 11.1667 23.6958 11.1667 22.9167Z"
+          fill="#222222"
+        />
+      </svg>
+      <h2>CountryPedia</h2>
+      <svg
+        class="menu"
+        width="24"
+        height="16"
+        viewBox="0 0 24 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M2 15.5H22C22.6875 15.5 23.25 14.9375 23.25 14.25C23.25 13.5625 22.6875 13 22 13H2C1.3125 13 0.75 13.5625 0.75 14.25C0.75 14.9375 1.3125 15.5 2 15.5ZM2 9.25H22C22.6875 9.25 23.25 8.6875 23.25 8C23.25 7.3125 22.6875 6.75 22 6.75H2C1.3125 6.75 0.75 7.3125 0.75 8C0.75 8.6875 1.3125 9.25 2 9.25ZM0.75 1.75C0.75 2.4375 1.3125 3 2 3H22C22.6875 3 23.25 2.4375 23.25 1.75C23.25 1.0625 22.6875 0.5 22 0.5H2C1.3125 0.5 0.75 1.0625 0.75 1.75Z"
+          fill="#222222"
+        />
+      </svg>
+    </header>
+    <main>
+      <div class="base">
+        <a href="/"><h1>CountryPedia</h1></a>
+        <!--SEARCH FUNCTION, WORK IN PROGRESS
       <form>
       <input type="text" id="search-input" placeholder="Search for a country" />
       <button class="search-btn" type="submit"></button>
     </form>
     -->
-    <div class="button-group">
-      <button id="all-countries">All Countries</button>
-      <button id="random">Random Country</button>
-      <button id="games">Games</button>
-    </div>
-    <div id="countries-wrapper"></div>
-
+        <div class="button-group">
+          <button id="all-countries">All Countries</button>
+          <button id="random">Random Country</button>
+          <button id="games">Games</button>
+        </div>
+      </div>
+      <div id="countries-wrapper"></div>
+    </main>
     <script src="script.js"></script>
   </body>
 </html>

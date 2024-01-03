@@ -3,6 +3,10 @@ const countriesWrapper = document.querySelector("#countries-wrapper");
 const allCountriesButton = document.querySelector("#all-countries");
 const randomButton = document.querySelector("#random");
 const gamesButton = document.querySelector("#games");
+const header = document.querySelector("header");
+const home = document.querySelector(".home");
+const menu = document.querySelector(".menu");
+const base = document.querySelector(".base");
 
 //Fetching countries
 const fetchCountries = async () => {
@@ -127,15 +131,166 @@ const fetchCountries = async () => {
     //Hide open/close button
     moreButton.style.display = "none";
   });
+
+  //GAMES
+
+  gamesButton.addEventListener("click", function () {
+    countriesWrapper.innerHTML = "";
+    const flagGuess = document.createElement("div");
+    flagGuess.classList.add("games-div");
+    const flagGuessTitle = document.createElement("h2");
+    const flagGuessBtns = document.createElement("div");
+    flagGuessBtns.classList.add("buttons-div");
+    const flagGuessInfo = document.createElement("button");
+    flagGuessInfo.classList.add("game-info");
+    const flagGuessPlay = document.createElement("button");
+    flagGuessPlay.classList.add("game-play");
+
+    /*const capitalGuess = document.createElement("div");
+    capitalGuess.classList.add("games-div");
+    const capitalGuessTitle = document.createElement("h2");
+    const capitalGuessBtns = document.createElement("div");
+    capitalGuessBtns.classList.add("buttons-div");
+    const capitalGuessInfo = document.createElement("button");
+    capitalGuessInfo.classList.add("game-info");
+    const capitalGuessPlay = document.createElement("button");
+    capitalGuessPlay.classList.add("game-play");*/
+
+    flagGuessTitle.textContent = "Guess the Flag";
+    flagGuessInfo.textContent = "How to play";
+    flagGuessPlay.textContent = "Play!";
+
+    /*capitalGuessTitle.textContent = "Guess the Capital";
+    capitalGuessInfo.textContent = "How to play";
+    capitalGuessPlay.textContent = "Play!";*/
+
+    flagGuess.appendChild(flagGuessTitle);
+    flagGuessBtns.appendChild(flagGuessInfo);
+    flagGuessBtns.appendChild(flagGuessPlay);
+    flagGuess.appendChild(flagGuessBtns);
+    countriesWrapper.appendChild(flagGuess);
+
+    /*capitalGuess.appendChild(capitalGuessTitle);
+    capitalGuessBtns.appendChild(capitalGuessInfo);
+    capitalGuessBtns.appendChild(capitalGuessPlay);
+    capitalGuess.appendChild(capitalGuessBtns);
+    countriesWrapper.appendChild(capitalGuess);*/
+
+    flagGuessInfo.addEventListener("click", function () {
+      alert;
+    });
+
+    //Generate question
+    function generateQuestion() {
+      //Shuffle array function
+      function shuffle(array) {
+        let currentIndex = array.length,
+          randomIndex;
+
+        // While there remain elements to shuffle.
+        while (currentIndex > 0) {
+          // Pick a remaining element.
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+
+          // And swap it with the current element.
+          [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex],
+            array[currentIndex],
+          ];
+        }
+
+        return array;
+      }
+
+      //Shuffle entire countries array in order to get different answer groups each time
+      shuffle(countries);
+
+      //Creating answers-array
+      const answerOptions = [
+        countries[1].name.common,
+        countries[2].name.common,
+        countries[3].name.common,
+        countries[4].name.common,
+      ];
+
+      //Shuffle answers array so correct answer position changes each time
+      shuffle(answerOptions);
+
+      //Correct answer
+      const correctAnswer = countries[1].name.common;
+
+      //Question wrapper
+      const questionWrapper = document.createElement("div");
+      questionWrapper.classList.add("question-wrapper");
+      countriesWrapper.appendChild(questionWrapper);
+
+      //Flag
+      const flag = new Image(350);
+      questionWrapper.appendChild(flag);
+      flag.src = countries[1].flags.png;
+      flag.classList.add("flag-game");
+
+      //Question
+      const question = document.createElement("h2");
+      question.textContent = "Which country has this flag?";
+      questionWrapper.appendChild(question);
+
+      //Answer options
+      const answersWrapper = document.createElement("div");
+      answersWrapper.classList.add("answers-wrapper");
+      questionWrapper.appendChild(answersWrapper);
+
+      answerOptions.forEach((answer) => {
+        const answerBox = document.createElement("div");
+        answerBox.classList.add("answer");
+        answersWrapper.appendChild(answerBox);
+
+        answerBox.textContent = answer;
+        //When clicking on an answer
+        answerBox.addEventListener("click", function () {
+          if (answer === correctAnswer) {
+            //If correct answer: Show message and "Next"-button
+            answerBox.style.backgroundColor = "#BFF2B2";
+
+            const rightAnswerWrapper = document.createElement("div");
+            rightAnswerWrapper.classList.add("right-answer-wrapper");
+            answersWrapper.appendChild(rightAnswerWrapper);
+
+            const correctMessage = document.createElement("p");
+            correctMessage.textContent = "Right answer! ⭐";
+            rightAnswerWrapper.appendChild(correctMessage);
+
+            const nextQuestion = document.createElement("button");
+            nextQuestion.textContent = "Next";
+            nextQuestion.classList.add("next");
+            rightAnswerWrapper.appendChild(nextQuestion);
+            nextQuestion.addEventListener("click", function () {
+              countriesWrapper.innerHTML = "";
+              generateQuestion();
+            });
+          } else {
+            //If wrong answer: Show message and let the user try again
+            answerBox.style.backgroundColor = "#FF8F8F";
+            console.log("Wrong answer, try again");
+          }
+        });
+      });
+    }
+
+    //Play flag game
+    flagGuessPlay.addEventListener("click", function () {
+      header.style.display = "flex";
+      base.style.display = "none";
+      countriesWrapper.innerHTML = "";
+      generateQuestion();
+    });
+  });
 };
 fetchCountries();
 
-//GAMES BUTTON MESSAGE
-
-gamesButton.addEventListener("click", function () {
-  countriesWrapper.innerHTML = "";
-  const gamesDiv = document.createElement("div");
-  gamesDiv.classList.add("games-div");
-  gamesDiv.textContent = "Oh no! No games exist yet :(";
-  countriesWrapper.appendChild(gamesDiv);
+home.addEventListener("click", function () {
+  header.style.display = "none";
+  base.style.display = "flex";
+  window.location.href = "/";
 });
